@@ -4,6 +4,30 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import java.util.*
+import kotlin.collections.ArrayList
+
+fun getRandomLottoNumber(): Int {
+    return Random().nextInt(45) + 1
+}
+
+fun getRandomLottoNumbers(): MutableList<Int> {
+    val lottoNumbers = mutableListOf<Int>()
+
+    while (true) {
+        var number: Int = getRandomLottoNumber()
+
+        if (lottoNumbers.contains(number)) {
+            continue
+        }
+        lottoNumbers.add(number)
+        if (lottoNumbers.size >= 6)
+            break;
+    }
+    return lottoNumbers
+
+}
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,25 +36,27 @@ class MainActivity : AppCompatActivity() {
 
         var cv_Constell = findViewById<CardView>(R.id.cardview_Constellation)
         var cv_Name = findViewById<CardView>(R.id.cardview_Name)
-     //   var cv_Random = findViewById<CardView>(R.id.cardview_Random)
+        var cv_Random = findViewById<CardView>(R.id.cardview_Random)
 
 
-        cv_Constell.setOnClickListener{
+        cv_Constell.setOnClickListener {
             val intent = Intent(this, ConstellationActivity::class.java)
-           // intent.putIngerArrayListExtra("result",)
             startActivity(intent)
         }
 
-        cv_Name.setOnClickListener{
+        cv_Name.setOnClickListener {
             val intent = Intent(this, NameActivity::class.java)
             startActivity(intent)
         }
 
-//        cv_Random.setOnClickListener{
-//            val intent = Intent(this, NameActivity::class.java)
-//            startActivity(intent)
-//        }
+        cv_Random.setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putIntegerArrayListExtra("result", ArrayList(getRandomLottoNumbers()))
+            startActivity(intent)
+        }
+
 
     }
+
 
 }
