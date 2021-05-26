@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 
+
+
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -13,8 +15,13 @@ class ResultActivity : AppCompatActivity() {
 
         val result = intent.getIntegerArrayListExtra("result") ?: return
 
-        val result_sored = result?.sorted()
+        result?.let{
+            updateLottoBallImages(result.sortedBy{it})
+        }
 
+    }
+
+    private fun updateLottoBallImages(result_sored: List<Int>) {
         val lottoBallImageStartId = R.drawable.ball_01
 
         val imageview1 = findViewById<ImageView>(R.id.imageView1)
@@ -32,7 +39,7 @@ class ResultActivity : AppCompatActivity() {
         imageview6.setImageResource(lottoBallImageStartId + result_sored[5] - 1)
 
 
-
-
     }
+
+
 }
