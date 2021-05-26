@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         var cv_Name = findViewById<CardView>(R.id.cardview_Name)
         var cv_Random = findViewById<CardView>(R.id.cardview_Random)
 
+        cv_Random.setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putIntegerArrayListExtra("result", ArrayList(getRandomLottoNumbers()))
+            startActivity(intent)
+        }
 
         cv_Constell.setOnClickListener {
             val intent = Intent(this, ConstellationActivity::class.java)
@@ -49,11 +54,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        cv_Random.setOnClickListener {
-            val intent = Intent(this, ResultActivity::class.java)
-            intent.putIntegerArrayListExtra("result", ArrayList(getRandomLottoNumbers()))
-            startActivity(intent)
-        }
 
 
     }
