@@ -29,6 +29,7 @@ fun getRandomLottoNumbers(): MutableList<Int> {
 }
 
 fun getShuffledLottoNumbers() : MutableList<Int>{
+
     val list = mutableListOf<Int>()
     for(number in 1..45){
         list.add(number)
