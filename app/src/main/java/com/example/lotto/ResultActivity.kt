@@ -19,7 +19,7 @@ class ResultActivity : AppCompatActivity() {
         val result = intent.getIntegerArrayListExtra("result")// ?: return
         val strConstellation = intent.getStringExtra("constellation")
 
-        val result_sored = return?.let{ result.sortedBy{it} }
+        val result_sored = return?.let{ result?.sortedBy{it} }
 
         result?.let{
             updateLottoBallImages(result.sortedBy{it})
